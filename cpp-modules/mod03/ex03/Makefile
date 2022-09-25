@@ -1,0 +1,32 @@
+CC			:= c++
+CXXFLAGS	:= -Wall -Wextra -Werror -Wshadow -Wno-shadow
+COPTS		:= -std=c++98 -pedantic-errors
+INCLUDE		:= -I src
+
+NAME	:= a.out
+SRCS	:= ClapTrap.cpp    FragTrap.cpp    main.cpp\
+DiamondTrap.cpp ScavTrap.cpp
+OBJS	:= $(SRCS:%.cpp=%.o)
+SRCS	:= $(addprefix src/, $(SRCS))
+OBJS	:= $(addprefix obj/, $(OBJS))
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CC) -o $(NAME) $(CXXFLAGS) $(COPTS) $(INCLUDE) $(OBJS)
+
+obj/%.o: src/%.cpp
+	$(CC) $(CXXFLAGS) $(COPTS) $(INCLUDE) -o $@ -c $^
+
+clean:
+	rm -rf $(OBJS)
+
+fclean: clean
+	rm -rf $(NAME)
+
+re: fclean all
+
+run: all
+	./a.out
+
+.PHONY: all clean fcleanfe

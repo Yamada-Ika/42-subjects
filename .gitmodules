@@ -1,0 +1,12 @@
+[submodule "minishell"]
+	path = minishell
+	url = git@github.com:Yamada-Ika/minishell.git
+[submodule "cub3d"]
+	path = cub3d
+	url = git@github.com:Yamada-Ika/cub3d.git
+[submodule "webserv"]
+	path = webserv
+	url = git@github.com:Yamada-Ika/webserv.git
+[submodule "ft_containers"]
+	path = ft_containers
+	url = git@github.com:Yamada-Ika/ft_containers.git

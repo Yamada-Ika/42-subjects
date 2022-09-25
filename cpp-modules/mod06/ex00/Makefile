@@ -1,0 +1,40 @@
+CC			:= c++
+CXXFLAGS	:= -Wall -Wextra -Werror
+COPTS		:= -std=c++98 -pedantic-errors
+INCLUDE		:= -I src
+
+NAME	:= convert
+SRCS	:= main.cpp Cast.cpp
+OBJS	:= $(SRCS:%.cpp=%.o)
+SRCS	:= $(addprefix src/, $(SRCS))
+OBJS	:= $(addprefix obj/, $(OBJS))
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CC) -o $(NAME) $(CXXFLAGS) $(COPTS) $(INCLUDE) $(OBJS)
+
+obj/%.o: src/%.cpp
+	$(CC) $(CXXFLAGS) $(COPTS) $(INCLUDE) -o $@ -c $^
+
+clean:
+	rm -rf $(OBJS)
+
+fclean: clean
+	rm -rf $(NAME)
+
+re: fclean all
+
+run: all
+	./convert 0
+	./convert nan
+	./convert 42.0f
+	./convert \*
+	./convert a
+	-./convert fuga
+	./convert 9223372036854775807
+	./convert -10
+	./convert 340282346638528859811704183484516925440.000000
+	./convert 179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.000000
+
+.PHONY: all clean fclean re run

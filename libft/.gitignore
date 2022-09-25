@@ -1,0 +1,7 @@
+a.out
+libft.a
+*.o
+.DS_Store
+.vscode
+*.sh
+.test
